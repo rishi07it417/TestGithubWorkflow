@@ -24,6 +24,9 @@ jobs:
         run: echo "Testing..."
   deploy:
     runs-on: ubuntu-latest
+    needs:
+      - build
+      - test
     environment:
       name: my_env
 
