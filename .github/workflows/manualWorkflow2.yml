@@ -11,6 +11,7 @@ on:
           - dev
           - staging
           - production
+          - my_env
       version:
         description: "Version to deploy"
         required: true
