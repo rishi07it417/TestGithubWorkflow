@@ -36,6 +36,9 @@ jobs:
       - name: Run a multi-line script
         run: |
           echo CLOUD : $cloud,
+          echo repository : ${{github.repository}},
+          echo workflow : ${{github.workflow}},
+          echo triggering_actor : ${{github.triggering_actor}},
           echo MY_ENV_VAR : ${{vars.MY_ENV_VAR}},
           echo MY_ENV_SECRET : ${{vars.MY_ENV_SECRET}},
           echo CODESPACE_SECRET : ${{vars.CODESPACE_SECRET}},
