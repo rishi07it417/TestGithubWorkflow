@@ -1,0 +1,39 @@
+name: Manual Deployment
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Deployment environment"
+        required: true
+        type: choice
+        options:
+          - dev
+          - staging
+          - production
+      version:
+        description: "Version to deploy"
+        required: true
+        type: string
+      force:
+        description: "Force deployment"
+        required: false
+        type: boolean
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Show inputs
+        run: |
+          echo "Environment: ${{ inputs.environment }}"
+          echo "Version: ${{ inputs.version }}"
+          echo "Force: ${{ inputs.force }}"
+
+      - name: Conditional execution
+        if: ${{ inputs.force == true }}
+        run: echo "Force deployment enabled"
